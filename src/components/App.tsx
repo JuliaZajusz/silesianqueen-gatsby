@@ -16,6 +16,7 @@ return (
             <div>
               <Routes >
                 <Route path="/article" element={<Article/>} />
+                <Route path="/*" element={<Article/>} />
                 <Route index element={<HomePage/>} />
               </Routes >
             </div>
