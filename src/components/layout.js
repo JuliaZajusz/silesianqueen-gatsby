@@ -21,6 +21,7 @@ const Layout = ({ isHomePage, children }) => {
 
   return (
     <div className="global-wrapper" data-is-root-path={isHomePage}>
+    lalala
     <App/>
       <header className="global-header">
         {isHomePage ? (

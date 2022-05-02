@@ -1,4 +1,12 @@
 import React from "react";
+import Menu from './components/Menu';
+import Article from './components/Article';
+import HomePage from './components/HomePage';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 const App: React.FC = () => {
 return (
