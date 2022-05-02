@@ -29,7 +29,6 @@ module.exports = {
         url:
           process.env.WPGRAPHQL_URL ||
           `https://silesianqueen.000webhostapp.com/index.php?graphql`
-//          `https://wpgatsbydemo.wpengine.com/graphql`,
       },
     },
 
