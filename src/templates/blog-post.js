@@ -23,6 +23,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
 
   return (
     <Layout>
+    ppp
       <Seo title={post.title} description={post.excerpt} />
 
       <article

@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import parse from "html-react-parser"
-import App from "./App.tsx"
+import App from "./App"
 
 const Layout = ({ isHomePage, children }) => {
   const {

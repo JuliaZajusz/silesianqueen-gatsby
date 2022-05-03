@@ -1,7 +1,5 @@
 import React from "react";
-import {
-  Link
-} from "react-router-dom";
+import { Router, Link, Location } from "@reach/router"
 
 interface MenuProps {
 }
@@ -11,10 +9,8 @@ const Menu: React.FC = (props: MenuProps) => {
 return (
     <div>
     Menu
-      <nav>
-        <Link to="/">Home</Link> |{" "}
-        <Link to="article">About</Link>
-      </nav>
+    <Link to="/">Home</Link>
+    <Link to="/article">Article</Link>
     </div>
     )
 }
