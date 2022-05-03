@@ -14,20 +14,19 @@ const BlogIndex = ({
 
   if (!posts.length) {
     return (
-      <Layout isHomePage>
-        <Seo title="All posts" />
+      <Layout isHomePage pageTitle={"Ups"}>
+        <Seo title="All articles" />
         <Bio />
         <p>
-          No blog posts found. Add posts to your WordPress site and they'll
-          appear here!
+          No articles found. Try again later!
         </p>
       </Layout>
     )
   }
 
   return (
-    <Layout isHomePage>
-      <Seo title="All posts" />
+    <Layout isHomePage pageTitle={"All articles"}>
+      <Seo title="All articles" />
 
       <Bio />
 

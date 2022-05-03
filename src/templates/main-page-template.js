@@ -5,31 +5,43 @@ import parse from "html-react-parser"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import { GatsbyImage } from "gatsby-plugin-image"
+import { extractHeadingFromContent } from '../utils/expractHeadingFromContent'
 
 const BlogIndex = ({
   data,
   pageContext: { nextPagePath, previousPagePath },
 }) => {
   const posts = data.allWpPost.nodes
-
+  const featuredImage = posts[0] && {
+    data: posts[0].featuredImage?.node?.localFile?.childImageSharp?.gatsbyImageData,
+    alt: posts[0].featuredImage?.node?.alt || ``,
+  }
   if (!posts.length) {
     return (
-      <Layout isHomePage>
+      <Layout isHomePage pageTitle={"Ups"}>
         <Seo title="All posts" />
-        <Bio />
         <p>
-          No blog posts found. Add posts to your WordPress site and they'll
-          appear here!
+          No articles found. Try again later!
         </p>
       </Layout>
     )
   }
 
   return (
-    <Layout isHomePage>
+    <Layout
+      isHomePage
+      pageTitle={posts[0].title}
+      pageHeading={!!posts[0].content && extractHeadingFromContent(parse(posts[0].content)).heading}
+      image={featuredImage?.data && (
+        <GatsbyImage
+          image={featuredImage.data}
+          alt={featuredImage.alt}
+          style={{ marginBottom: 50 }}
+        />
+      )}
+    >
       <Seo title="All posts" />
-
-      <Bio />
 
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {

@@ -11,9 +11,9 @@ import parse from "html-react-parser"
 import "../css/@wordpress/block-library/build-style/style.css"
 import "../css/@wordpress/block-library/build-style/theme.css"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import { extractHeadingFromContent } from '../utils/expractHeadingFromContent'
 
 const BlogPostTemplate = ({ data: { previous, next, post } }) => {
   const featuredImage = {
@@ -21,9 +21,19 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
     alt: post.featuredImage?.node?.alt || ``,
   }
 
+  console.log('jul parse(post.content)', parse(post.content))
   return (
-    <Layout>
-    ppp
+    <Layout
+    // pageTitle={post.title}
+    // pageHeading={!!post.content && extractHeadingFromContent(parse(post.content)).heading}
+    // image={featuredImage?.data && (
+    //   <GatsbyImage
+    //     image={featuredImage.data}
+    //     alt={featuredImage.alt}
+    //     style={{ marginBottom: 50 }}
+    //   />
+    // )}
+    >
       <Seo title={post.title} description={post.excerpt} />
 
       <article
@@ -33,10 +43,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
       >
         <header>
           <h1 itemProp="headline">{parse(post.title)}</h1>
-
-          <p>{post.date}</p>
-
-          {/* if we have a featured image for this post let's display it */}
+          {!!post.content && extractHeadingFromContent(parse(post.content)).heading}
           {featuredImage?.data && (
             <GatsbyImage
               image={featuredImage.data}
@@ -47,14 +54,9 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
         </header>
 
         {!!post.content && (
-          <section itemProp="articleBody">{parse(post.content)}</section>
+          <section itemProp="articleBody">{extractHeadingFromContent(parse(post.content)).content}</section>
         )}
 
-        <hr />
-
-        <footer>
-          <Bio />
-        </footer>
       </article>
 
       <nav className="blog-post-nav">
